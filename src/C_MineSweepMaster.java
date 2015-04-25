@@ -26,10 +26,37 @@ public class C_MineSweepMaster {
 	//given a board with mines filled, and click row and col, judge if this click can win the game
 	private boolean isClickWorking(char[][] board, int rowCnt, int colCnt, int clickRow, int clickCol){
 		boolean result = false;
-		Stack<Point> q = new LinkedList<Point>();
-		
+		int countOfOpenPoints = 1; // at least the clicked point is open
+		Stack<Point> s = new Stack<Point>();
+		s.push(new Point(clickRow, clickCol));
+		while(!s.isEmpty()){
+			Point cur = s.pop();
+			//now exam the 8 neighbors of the cur point.
+			exploreNeighbors(board, cur, s, rowCnt, colCnt);
+		}
 		
 	}
+	// this function explore 8 possible neighbors, set neighbors to 0 if legit, and push legit neighbors to stack
+	private void exploreNeighbors(char[][] board, Point cur, Stack<Point> s, int rowCnt, int colCnt){
+
+		//top-left
+		
+		if (cur.row -1 >=0 && cur.col-1 >=0){
+			char c = board[cur.row-1][cur.col-1];
+			if (c == '0'){
+				s.push(new Point(cur.row-1,cur.col-1))
+			}
+		}
+		//top-middle
+		//top-right
+		//left
+		//right
+		//bottom-left
+		//bottom-middle
+		//bottom-right
+	}
+	
+	private void processOneNeighbor(char[][] board, Stack<Point> s, int )
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
